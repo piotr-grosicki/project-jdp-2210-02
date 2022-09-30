@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping//domain
@@ -12,7 +13,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductDto>> getProducts() {
-        List<Product> products = new ArrayList<>();
+        List<ProductDto> products = new ArrayList<>();
         //code connected with service, repository and mapper
         return ResponseEntity.ok().build();
     }
