@@ -15,9 +15,9 @@ public class CartController {
         return ResponseEntity.ok(new CartDto(null,null,null));
     }
 
-    @PutMapping("/product/{cartId}")
-    ResponseEntity<CartDto> addProductToCart(@PathVariable Long cartId){
-        if (cartId == 3)
+    @PutMapping("/product/{cartId}/{productId}")
+    ResponseEntity<CartDto> addProductToCart(@PathVariable Long cartId, @PathVariable Long productId){
+        if (cartId == 3 && productId == 1)
             return ResponseEntity.ok().build();
         return ResponseEntity.notFound().build();
     }
@@ -34,10 +34,10 @@ public class CartController {
         return ResponseEntity.ok(new ArrayList<>());
     }
 
-    @DeleteMapping("{id}")
-    ResponseEntity<Void> deleteProductFromCartById(@PathVariable Long id){
-        if (id != 2)
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().build();
+    @DeleteMapping(value = "{cartId}/{productId}")
+    ResponseEntity<Void> deleteProductFromCartById(@PathVariable Long cartId, @PathVariable Long productId){
+        if (cartId != 2 && productId == 1)
+            return ResponseEntity.ok().build();
+        return ResponseEntity.notFound().build();
     }
 }
