@@ -23,7 +23,7 @@ public class GroupController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createGroup() {
+    public void createGroup(@RequestBody GroupDto groupDto) {
 
     }
 
@@ -34,7 +34,7 @@ public class GroupController {
     }
 
     @DeleteMapping(value = "{groupId}")
-    public void deleteGroup(Long groupId) {
+    public void deleteGroup(@PathVariable Long groupId) {
 
     }
 }
