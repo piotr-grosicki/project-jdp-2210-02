@@ -11,17 +11,18 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    @GetMapping
+    @GetMapping("/getall")
     public ResponseEntity<List<ProductDto>> getProducts() {
-        List<ProductDto> products = new ArrayList<>();
         //code connected with service, repository and mapper
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new ArrayList<>());
     }
 
     @GetMapping(value = "{productId}")
     public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId) {
         //code connected with service, repository and mapper
-        return ResponseEntity.ok().build();
+        if (productId == 1)
+            return ResponseEntity.ok().build();
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -39,6 +40,8 @@ public class ProductController {
     @DeleteMapping(value = "{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
         //code connected with service, repository and mapper
+        if (productId != 3)
+            return ResponseEntity.notFound().build();
         return ResponseEntity.ok().build();
     }
 
