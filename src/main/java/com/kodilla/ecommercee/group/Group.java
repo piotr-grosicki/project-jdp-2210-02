@@ -8,14 +8,14 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "groups")
+@Entity(name = "GROUPS")
 public class Group {
 
     @Id
     @GeneratedValue
-    @Column(name = "group_id", unique = true)
+    @Column(name = "GROUP_ID", unique = true)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 }
