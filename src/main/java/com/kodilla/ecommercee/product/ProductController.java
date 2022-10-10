@@ -31,7 +31,7 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping(value = "{productId}")
     public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
         //code connected with service, repository and mapper
         return ResponseEntity.ok().build();
