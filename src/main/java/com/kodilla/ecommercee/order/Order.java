@@ -34,5 +34,5 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
-    //private User user; komentarz do usunięcia po dodaniu encji User
+    private User user;
 }
