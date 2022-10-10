@@ -21,11 +21,11 @@ public class Cart {
     private Long id;
 
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @Column(name = "USER_ID")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Column(name = "ORDER_ID")
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
