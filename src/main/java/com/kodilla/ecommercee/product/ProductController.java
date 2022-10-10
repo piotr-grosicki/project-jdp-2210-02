@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @PutMapping(value = "{productId}")
-    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto, @PathVariable Long productId) {
         //code connected with service, repository and mapper
         return ResponseEntity.ok().build();
     }
