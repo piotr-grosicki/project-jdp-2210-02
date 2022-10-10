@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.product;
 
-//import com.kodilla.ecommercee.group.Group;
+import com.kodilla.ecommercee.group.Group;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,16 +40,8 @@ public class Product {
 
     @Column(name = "PRICE")
     private double price;
-/*
-    private Group group;
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    } */
+    private Group group;
 }
