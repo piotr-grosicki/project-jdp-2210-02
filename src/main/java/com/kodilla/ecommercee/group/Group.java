@@ -1,9 +1,11 @@
 package com.kodilla.ecommercee.group;
 
 import com.kodilla.ecommercee.product.Product;
+
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -11,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "[GROUPS]")
+@Table(name =  "\"GROUPS\"")
 public class Group {
 
     @Id
@@ -19,6 +21,7 @@ public class Group {
     @Column(name = "GROUP_ID", unique = true)
     private Long id;
 
+    @NotNull
     @Column(name = "NAME")
 
     private String name;

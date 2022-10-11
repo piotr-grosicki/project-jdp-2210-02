@@ -1,14 +1,22 @@
 package com.kodilla.ecommercee.order;
 
+import com.kodilla.ecommercee.cart.Cart;
+import com.kodilla.ecommercee.product.Product;
+import com.kodilla.ecommercee.user.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -18,7 +26,7 @@ public class Order {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "ORDER_ID", unique = true)
     private Long orderId;
 
     @Column(name = "ORDER_DATE")
@@ -32,4 +40,12 @@ public class Order {
 
     @Column(name = "SHIPPING_STATUS")
     private String shippingStatus;
+
+    /*@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CART_ID")
+    private Cart cart;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    private User user;*/
 }
