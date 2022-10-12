@@ -4,16 +4,18 @@ import com.kodilla.ecommercee.product.Product;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "GROUPS")
+@Table(name = "\"GROUPS\"")
 public class Group {
 
     @Id
+    @NotNull
     @GeneratedValue
     @Column(name = "GROUP_ID", unique = true)
     private Long id;
