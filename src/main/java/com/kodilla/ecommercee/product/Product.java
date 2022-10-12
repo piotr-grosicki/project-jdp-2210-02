@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.product;
 
+import com.kodilla.ecommercee.cart.Cart;
 import com.kodilla.ecommercee.group.Group;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -51,5 +53,16 @@ public class Product {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    private List<Cart> carts;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
     }
 }
