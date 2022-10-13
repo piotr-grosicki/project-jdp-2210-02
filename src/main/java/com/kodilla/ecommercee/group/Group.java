@@ -9,10 +9,14 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "GROUPS")
 @Table(name = "\"GROUPS\"")
 public class Group {
+
+    public Group(String name, List<Product> products) {
+        this.name = name;
+        this.products = products;
+    }
 
     @Id
     @NotNull
@@ -21,8 +25,8 @@ public class Group {
     private Long id;
 
     @Column(name = "NAME")
-
     private String name;
+
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",

@@ -23,78 +23,78 @@ public class GroupTestSuite {
     @Test
     public void testFindAllGroups() {
         //Given
-        Product product1 = new Product(1L, "product1", "description1", 5, 24.30);
-        Product product2 = new Product(2L, "product2", "description2", 12, 7.55);
-        Product product3 = new Product(3L, "product3", "description3", 2, 112.47);
+        Product product1 = new Product("product1", "description1", 5, 24.30);
+        Product product2 = new Product("product2", "description2", 12, 7.55);
+        Product product3 = new Product("product3", "description3", 2, 112.47);
         List<Product> products1 = new ArrayList<>();
         List<Product> products2 = new ArrayList<>();
         List<Product> products3 = new ArrayList<>();
         products1.add(product1);
         products2.add(product2);
         products3.add(product3);
-        Group group1 = new Group(1L,"group1", products1);
-        Group group2 = new Group(2L, "group2", products2);
-        Group group3 = new Group(3L, "group3", products3);
+        Group group1 = new Group("group1", products1);
+        Group group2 = new Group("group2", products2);
+        Group group3 = new Group("group3", products3);
         //When
         groupRepository.save(group1);
         groupRepository.save(group2);
         groupRepository.save(group3);
         List<Group> testList = groupRepository.findAll();
         //Then
-        assertEquals(2, testList.size());
+        assertEquals(3, testList.size());
         //CleanUp
         groupRepository.deleteById(group1.getId());
-        //groupRepository.deleteById(group2.getId());
+        groupRepository.deleteById(group2.getId());
         groupRepository.deleteById(group3.getId());
     }
 
     @Test
     public void testFingGroupById() {
         //Given
-        Product product1 = new Product(1L, "product1", "description1", 5, 24.30);
-        Product product2 = new Product(2L, "product2", "description2", 12, 7.55);
-        Product product3 = new Product(3L, "product3", "description3", 2, 112.47);
+        Product product1 = new Product("product1", "description1", 5, 24.30);
+        Product product2 = new Product("product2", "description2", 12, 7.55);
+        Product product3 = new Product("product3", "description3", 2, 112.47);
         List<Product> products1 = new ArrayList<>();
         List<Product> products2 = new ArrayList<>();
         List<Product> products3 = new ArrayList<>();
         products1.add(product1);
         products2.add(product2);
         products3.add(product3);
-        Group group1 = new Group(1L, "group1", products1);
-        Group group2 = new Group(2L, "group2", products2);
-        Group group3 = new Group(3L, "group3", products3);
+        Group group1 = new Group("group1", products1);
+        Group group2 = new Group("group2", products2);
+        Group group3 = new Group("group3", products3);
         //When
         groupRepository.save(group1);
         groupRepository.save(group2);
         groupRepository.save(group3);
-        Optional<Group> testGroup1 = groupRepository.findById(1L);
-        //Optional<Group> testGroup2 = groupRepository.findById(2L);
-        Optional<Group> testGroup3 = groupRepository.findById(3L);
+        Optional<Group> testGroup1 = groupRepository.findById(group1.getId());
+        Optional<Group> testGroup2 = groupRepository.findById(group2.getId());
+        Optional<Group> testGroup3 = groupRepository.findById(group3.getId());
         //Then
         assertEquals("group1", testGroup1.get().getName());
-        //assertEquals("group2", testGroup2.get().getName());
+        assertEquals("group2", testGroup2.get().getName());
         assertEquals("group3", testGroup3.get().getName());
         //CleanUp
         groupRepository.deleteById(group1.getId());
-        //groupRepository.deleteById(group2.getId());
+        groupRepository.deleteById(group2.getId());
         groupRepository.deleteById(group3.getId());
     }
 
     @Test
     public void testDeleteGroupById() {
         //Given
-        Product product1 = new Product(1L, "product1", "description1", 5, 24.30);
-        Product product2 = new Product(2L, "product2", "description2", 12, 7.55);
-        Product product3 = new Product(3L, "product3", "description3", 2, 112.47);
+        Product product1 = new Product("product1", "description1", 5, 24.30);
+        Product product2 = new Product("product2", "description2", 12, 7.55);
+        Product product3 = new Product("product3", "description3", 2, 112.47);
         List<Product> products1 = new ArrayList<>();
         List<Product> products2 = new ArrayList<>();
         List<Product> products3 = new ArrayList<>();
         products1.add(product1);
         products2.add(product2);
         products3.add(product3);
-        Group group1 = new Group(1L, "group1", products1);
-        Group group2 = new Group(2L, "group2", products2);
-        Group group3 = new Group(3L, "group3", products3);
+        Group group1 = new Group("group1", products1);
+        Group group2 = new Group("group2", products2);
+        Group group3 = new Group("group3", products3);
         //When
         groupRepository.save(group1);
         groupRepository.save(group2);
@@ -102,9 +102,9 @@ public class GroupTestSuite {
         groupRepository.deleteById(group3.getId());
         List<Group> testList = groupRepository.findAll();
         //Then
-        assertEquals(1, testList.size());
+        assertEquals(2, testList.size());
         //CleanUp
         groupRepository.deleteById(group1.getId());
-        //groupRepository.deleteById(group2.getId());
+        groupRepository.deleteById(group2.getId());
     }
 }
