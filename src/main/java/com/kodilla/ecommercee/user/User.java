@@ -19,6 +19,19 @@ import java.util.List;
 @Entity
 @Table(name = "USERS")
 public class User {
+
+    public User(String login, String password, String name, String surname, String address, String city, String phoneNumber, String email, boolean isBlock) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.isBlock = isBlock;
+    }
+
     @Id
     @NotNull
     @GeneratedValue

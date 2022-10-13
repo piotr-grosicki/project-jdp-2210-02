@@ -23,6 +23,13 @@ import java.util.List;
 @Table(name = "ORDERS")
 public class Order {
 
+    public Order(LocalDateTime dateOfOrder, LocalDateTime shippingDate, String shippingAddress, String shippingStatus) {
+        this.dateOfOrder = dateOfOrder;
+        this.shippingDate = shippingDate;
+        this.shippingAddress = shippingAddress;
+        this.shippingStatus = shippingStatus;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -41,11 +48,11 @@ public class Order {
     @Column(name = "SHIPPING_STATUS")
     private String shippingStatus;
 
-    /*@OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CART_ID")
     private Cart cart;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
-    private User user;*/
+    private User user;
 }

@@ -21,6 +21,10 @@ import java.util.List;
 @Table(name = "CARTS")
 public class Cart {
 
+    public Cart(List<Product> products) {
+        this.products = products;
+    }
+
     @Id
     @GeneratedValue
 
@@ -38,8 +42,8 @@ public class Cart {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "ProductsInCart",
-            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")}
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CART_ID")
     )
     private List<Product> products;
 }
