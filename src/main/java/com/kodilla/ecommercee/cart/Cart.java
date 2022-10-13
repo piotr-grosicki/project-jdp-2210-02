@@ -4,20 +4,19 @@ import com.kodilla.ecommercee.order.Order;
 import com.kodilla.ecommercee.product.Product;
 import com.kodilla.ecommercee.user.User;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "CARTS")
 public class Cart {
-
     @Id
+    @NotNull
     @GeneratedValue
-
     @Column(name = "CART_ID", unique = true)
     private Long id;
 
@@ -32,8 +31,8 @@ public class Cart {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "ProductsInCart",
-            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CART_ID")
+            joinColumns = @JoinColumn(name = "PRODUCTS_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CARTS_ID")
     )
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 }

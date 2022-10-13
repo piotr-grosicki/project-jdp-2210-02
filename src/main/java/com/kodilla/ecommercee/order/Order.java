@@ -1,8 +1,8 @@
 package com.kodilla.ecommercee.order;
 
-import com.kodilla.ecommercee.cart.Cart;
 import com.kodilla.ecommercee.user.User;
-
+import com.kodilla.ecommercee.cart.Cart;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "ORDERS")
@@ -41,11 +42,11 @@ public class Order {
     @Column(name = "SHIPPING_STATUS")
     private String shippingStatus;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CART_ID")
     private Cart cart;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;
 }
