@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.order;
 
 import com.kodilla.ecommercee.cart.Cart;
-import com.kodilla.ecommercee.product.Product;
+
 import com.kodilla.ecommercee.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
