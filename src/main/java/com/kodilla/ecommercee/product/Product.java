@@ -2,13 +2,11 @@ package com.kodilla.ecommercee.product;
 
 import com.kodilla.ecommercee.cart.Cart;
 import com.kodilla.ecommercee.group.Group;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +19,7 @@ public class Product {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "PRODUCT_ID")
+    @Column(name = "PRODUCT_ID", unique = true)
     private Long id;
 
     @Column(name = "NAME")
@@ -43,8 +41,8 @@ public class Product {
     @ManyToMany
     @JoinTable(
             name = "ProductsInCart",
-            joinColumns = {@JoinColumn(name = "PRODUCT_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "CART_ID")}
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CART_ID")
     )
     private List<Cart> carts;
 }

@@ -2,23 +2,30 @@ package com.kodilla.ecommercee.user;
 
 import com.kodilla.ecommercee.cart.Cart;
 import com.kodilla.ecommercee.order.Order;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Data
 @Entity
 @Table(name = "USERS")
 public class User {
+
+    public User(String login, String password, String name, String surname, String address, String city, String phoneNumber, String email, boolean isBlock) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.isBlock = isBlock;
+    }
+
     @Id
     @NotNull
     @GeneratedValue
