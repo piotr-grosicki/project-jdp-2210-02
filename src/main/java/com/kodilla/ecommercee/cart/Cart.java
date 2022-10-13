@@ -3,30 +3,20 @@ package com.kodilla.ecommercee.cart;
 import com.kodilla.ecommercee.order.Order;
 import com.kodilla.ecommercee.product.Product;
 import com.kodilla.ecommercee.user.User;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Data
 @Entity
 @Table(name = "CARTS")
 public class Cart {
-
-    public Cart(List<Product> products) {
-        this.products = products;
-    }
-
     @Id
+    @NotNull
     @GeneratedValue
-
     @Column(name = "CART_ID", unique = true)
     private Long id;
 
