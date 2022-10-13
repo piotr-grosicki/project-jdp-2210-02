@@ -6,7 +6,6 @@ import com.kodilla.ecommercee.user.User;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +13,10 @@ import java.util.List;
 @Entity
 @Table(name = "CARTS")
 public class Cart {
+
     @Id
-    @NotNull
     @GeneratedValue
+
     @Column(name = "CART_ID", unique = true)
     private Long id;
 
