@@ -17,8 +17,7 @@ import java.util.List;
 @Table(name = "PRODUCTS")
 public class Product {
 
-    public Product(Long id, String name, String description, int quantity, double price) {
-        this.id = id;
+    public Product(String name, String description, int quantity, double price) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
@@ -43,16 +42,16 @@ public class Product {
     @Column(name = "PRICE")
     private double price;
 
-    private Group group;
+    private List<Group> groups;
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    public Group getGroup() {
-        return group;
+    public List<Group> getGroups() {
+        return groups;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
     private List<Cart> carts;
