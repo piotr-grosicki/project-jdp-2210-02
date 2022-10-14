@@ -24,7 +24,7 @@ public class Cart {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
