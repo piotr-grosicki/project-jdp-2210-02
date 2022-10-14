@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -54,5 +55,25 @@ public class UserTestSuite {
 
         // cleanUp
         userRepository.deleteAll();
+    }
+
+    @Test
+    public void findUserById(){
+        // given
+        User user = new User(
+                "login",
+                "password",
+                "test name 123",
+                "surname",
+                "address",
+                "city",
+                "123-123-123",
+                "mail@mail"
+        );
+        // when
+        userRepository.save(user);
+        Long id = user.getId();
+        // then
+        assertTrue(userRepository.existsById(id));
     }
 }
