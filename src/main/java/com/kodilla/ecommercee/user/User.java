@@ -1,6 +1,10 @@
 package com.kodilla.ecommercee.user;
 
-import lombok.*;
+import com.kodilla.ecommercee.cart.Cart;
+import com.kodilla.ecommercee.order.Order;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,6 +38,14 @@ public class User {
     private String email;
     @Column(name = "IS_BLOCK")
     private boolean blockStatus;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "CART_ID")
+    private Cart cart;
 
     User(final String login, final String password, final String name, final String surname, final String address, final String city, final String phoneNumber, final String email) {
         this.login = login;
