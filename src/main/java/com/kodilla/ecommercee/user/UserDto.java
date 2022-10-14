@@ -13,7 +13,7 @@ public class UserDto {
     private String city;
     private String phoneNumber;
     private String email;
-    private boolean isBlock;
+    private boolean blockStatus;
 
     UserDto(final String login, final String password, final String name, final String surname, final String address, final String city, final String phoneNumber, final String email) {
         this.login = login;
@@ -24,5 +24,6 @@ public class UserDto {
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.blockStatus = false;
     }
 }
