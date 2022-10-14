@@ -15,8 +15,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByPassword(String password);
 
     @Override
-    boolean existsById(Long aLong);
+    boolean existsById(Long userId);
 
     @Override
-    void deleteById(Long aLong);
+    void deleteById(Long userId);
 }
