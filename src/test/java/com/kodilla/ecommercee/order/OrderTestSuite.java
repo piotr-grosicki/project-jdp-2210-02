@@ -1,7 +1,5 @@
 package com.kodilla.ecommercee.order;
 
-import com.kodilla.ecommercee.user.User;
-import com.kodilla.ecommercee.user.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,6 @@ public class OrderTestSuite {
 
     @Autowired
     private OrderRepository orderRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Test
     public void createOrder() {
@@ -67,12 +62,10 @@ public class OrderTestSuite {
     }
 
     @Test
-    public void deleteOrderById() {
+    public void deleteOrder() {
         //Given
-        User user = new User("login", "password", "name", "surname", "address", "city", "666 666 666", "email@email.com", false);
         Order order = new Order(LocalDateTime.now(), LocalDateTime.now(), "dfdfg", "sdsdsds");
         //When
-        userRepository.save(user);
         orderRepository.save(order);
         //Then
         assertEquals(1, orderRepository.findAll().size());
@@ -80,9 +73,7 @@ public class OrderTestSuite {
         orderRepository.deleteById(order.getOrderId());
 
         assertEquals(0, orderRepository.findAll().size());
-        assertEquals(1, userRepository.findAll().size());
         //Clean up
-        userRepository.deleteAll();
         orderRepository.deleteAll();
     }
 }
