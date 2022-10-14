@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.order;
 
+import com.kodilla.ecommercee.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,5 +35,5 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
-    //private User user;  komentarz do usunięcia jak tylko pojawi się encja User
+    private User user;
 }
