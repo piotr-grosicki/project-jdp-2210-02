@@ -75,5 +75,8 @@ public class UserTestSuite {
         Long id = user.getId();
         // then
         assertTrue(userRepository.existsById(id));
+
+        // cleanUp
+        userRepository.deleteAll();
     }
 }
