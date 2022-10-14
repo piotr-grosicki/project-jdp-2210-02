@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.group;
 
 import com.kodilla.ecommercee.product.Product;
-
 import lombok.*;
 
 import javax.persistence.*;
