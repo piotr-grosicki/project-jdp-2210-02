@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.order;
 
 import com.kodilla.ecommercee.user.User;
-import com.kodilla.ecommercee.cart.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,10 +40,6 @@ public class Order {
 
     @Column(name = "SHIPPING_STATUS")
     private String shippingStatus;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CART_ID")
-    private Cart cart;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
