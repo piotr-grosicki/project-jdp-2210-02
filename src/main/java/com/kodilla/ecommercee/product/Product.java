@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.product;
 
 import com.kodilla.ecommercee.group.Group;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "PRODUCTS")
 public class Product {
 
     public Product(Long id, String name, String description, int quantity, double price) {
