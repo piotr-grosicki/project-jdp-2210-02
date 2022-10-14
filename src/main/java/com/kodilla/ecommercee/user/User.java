@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "USERS")
 public class User {
-
     @Id
     @NotNull
     @GeneratedValue
