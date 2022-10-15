@@ -7,7 +7,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -34,5 +33,5 @@ public class Cart {
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"),
             joinColumns = @JoinColumn(name = "CART_ID")
     )
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
 }

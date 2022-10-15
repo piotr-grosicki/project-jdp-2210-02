@@ -1,14 +1,15 @@
 package com.kodilla.ecommercee.cart;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+
+import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Data
+@Getter
 public class CartDto {
-    private Long id;
+    private Long cartId;
     private Long userId;
     private Long orderId;
+    private List<Long> productsId;
 }
