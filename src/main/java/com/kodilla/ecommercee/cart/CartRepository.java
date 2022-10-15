@@ -1,19 +1,20 @@
 package com.kodilla.ecommercee.cart;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Transactional
-@Repository
-public interface CartRepository extends CrudRepository<Cart, Long> {
+@Service
+public interface CartRepository extends CrudRepository<Cart,Long> {
+
+    Optional<Cart> findById(Long id);
 
     @Override
-    List<Cart> findAll();
+    void deleteById(Long id);
 
     @Override
-    Optional<Cart> findById(Long cartId);
+    boolean existsById(Long cartId);
 }
