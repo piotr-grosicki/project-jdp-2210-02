@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.group;
 
 import com.kodilla.ecommercee.product.Product;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Group {
     @Column(name = "GROUP_ID", unique = true)
     private Long id;
 
+    @NotNull
     @Column(name = "NAME")
     private String name;
 

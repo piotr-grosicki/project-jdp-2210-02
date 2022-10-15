@@ -1,19 +1,22 @@
 package com.kodilla.ecommercee.product;
 
+import com.kodilla.ecommercee.cart.Cart;
 import com.kodilla.ecommercee.group.Group;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "PRODUCTS")
 public class Product {
 
     public Product(String name, String description, int quantity, double price) {
@@ -26,7 +29,8 @@ public class Product {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "PRODUCT_ID", unique = true)
+
     private Long id;
 
     @Column(name = "NAME")
@@ -44,4 +48,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
     private Group group;
+
+    @ManyToMany
+    @JoinTable(
+            name = "ProductsInCart",
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CART_ID")
+    )
+    private List<Cart> carts;
 }

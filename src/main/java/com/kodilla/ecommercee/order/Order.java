@@ -12,13 +12,21 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "order")
+@Entity
+@Table(name = "ORDERS")
 public class Order {
+
+    public Order(LocalDateTime dateOfOrder, LocalDateTime shippingDate, String shippingAddress, String shippingStatus) {
+        this.dateOfOrder = dateOfOrder;
+        this.shippingDate = shippingDate;
+        this.shippingAddress = shippingAddress;
+        this.shippingStatus = shippingStatus;
+    }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "ORDER_ID", unique = true)
     private Long orderId;
 
     @Column(name = "ORDER_DATE")
