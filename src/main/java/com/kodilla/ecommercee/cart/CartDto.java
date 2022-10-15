@@ -6,7 +6,6 @@ import lombok.Getter;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 public class CartDto {
     private Long cartId;
