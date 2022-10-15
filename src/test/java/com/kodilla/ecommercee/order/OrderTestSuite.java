@@ -69,7 +69,7 @@ public class OrderTestSuite {
     @Test
     public void deleteOrderById() {
         //Given
-        User user = new User("login", "password", "name", "surname", "address", "city", "666 666 666", "email@email.com", false);
+        User user = new User("login", "password", "name", "surname", "address", "city", "666 666 666", "email@email.com");
         Order order = new Order(LocalDateTime.now(), LocalDateTime.now(), "dfdfg", "sdsdsds");
         //When
         userRepository.save(user);
