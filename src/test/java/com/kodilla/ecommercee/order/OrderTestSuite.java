@@ -69,9 +69,7 @@ public class OrderTestSuite {
         orderRepository.save(order);
         //Then
         assertEquals(1, orderRepository.findAll().size());
-
         orderRepository.deleteById(order.getOrderId());
-
         assertEquals(0, orderRepository.findAll().size());
         //Clean up
         orderRepository.deleteAll();
