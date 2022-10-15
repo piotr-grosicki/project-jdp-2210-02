@@ -34,6 +34,9 @@ public class UserTestSuite {
         // then
         assertEquals(1,userRepository.count());
         assertEquals("test name 123", name);
+
+        // cleanUp
+        userRepository.deleteAll();
     }
     @Test
     public void createSeveralUsers(){
@@ -72,5 +75,51 @@ public class UserTestSuite {
         assertTrue(userRepository.existsById(id));
         // cleanUp
         userRepository.deleteAll();
+    }
+
+    @Test
+    public void testBlockUser(){
+        // given
+        User blockUser = new User(
+                "user",
+                "password",
+                "test name 123",
+                "surname",
+                "address",
+                "city",
+                "123-123-123",
+                "mail@mail"
+        );
+        User blockUser2 = new User(
+                "user",
+                "password",
+                "test name 123",
+                "surname",
+                "address",
+                "city",
+                "123-123-123",
+                "mail@mail"
+        );
+        User noBlockUser = new User(
+                "no block",
+                "password",
+                "no block user",
+                "surname",
+                "address",
+                "city",
+                "123-123-123",
+                "mail@mail"
+        );
+        // when
+        blockUser.setBlockStatus(true);
+        blockUser2.setBlockStatus(true);
+
+        userRepository.save(blockUser);
+        userRepository.save(blockUser2);
+        userRepository.save(noBlockUser);
+        // then
+        assertEquals(2, userRepository.findByBlockStatus(true).size());
+        assertEquals(3, userRepository.findAll().size());
+        assertEquals("no block user", userRepository.findByLogin("no block").get().getName());
     }
 }

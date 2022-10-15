@@ -14,6 +14,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findById(Long userId);
     Optional<User> findByLogin(String login);
     Optional<User> findByPassword(String password);
+    List<User> findByBlockStatus(boolean state);
     @Override
     boolean existsById(Long userId);
     @Override
