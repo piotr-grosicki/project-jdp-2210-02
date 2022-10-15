@@ -13,6 +13,9 @@ public class CartDto {
     private Long orderId;
     private List<Long> productsId;
     
+    CartDto(Long cartId, Long userId, Long orderId) {
+    }
+    
     CartDto() {
     }
 }
