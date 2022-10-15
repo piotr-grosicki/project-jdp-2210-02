@@ -42,16 +42,16 @@ public class Product {
     @Column(name = "PRICE")
     private double price;
 
-    private List<Group> groups;
+    private Group group;
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    public List<Group> getGroups() {
-        return groups;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     private List<Cart> carts;
