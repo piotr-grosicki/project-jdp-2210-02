@@ -8,22 +8,27 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
-@Table(name =  "\"GROUPS\"")
+@Table(name = "\"GROUPS\"")
 public class Group {
 
+    public Group(String name, List<Product> products) {
+        this.name = name;
+        this.products = products;
+    }
+
     @Id
+    @NotNull
     @GeneratedValue
     @Column(name = "GROUP_ID", unique = true)
     private Long id;
 
     @NotNull
     @Column(name = "NAME")
-
     private String name;
+
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
