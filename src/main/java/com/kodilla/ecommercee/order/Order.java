@@ -1,26 +1,32 @@
 package com.kodilla.ecommercee.order;
 
+import com.kodilla.ecommercee.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "order")
+@Entity
+@Table(name = "ORDERS")
 public class Order {
+
+    public Order(LocalDateTime dateOfOrder, LocalDateTime shippingDate, String shippingAddress, String shippingStatus) {
+        this.dateOfOrder = dateOfOrder;
+        this.shippingDate = shippingDate;
+        this.shippingAddress = shippingAddress;
+        this.shippingStatus = shippingStatus;
+    }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "ORDER_ID", unique = true)
     private Long orderId;
 
     @Column(name = "ORDER_DATE")
@@ -34,4 +40,8 @@ public class Order {
 
     @Column(name = "SHIPPING_STATUS")
     private String shippingStatus;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }

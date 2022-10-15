@@ -3,6 +3,8 @@ package com.kodilla.ecommercee.product;
 import com.kodilla.ecommercee.cart.Cart;
 import com.kodilla.ecommercee.group.Group;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +14,7 @@ import java.util.List;
 
 
 @NoArgsConstructor
-@Getter
+@Data
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
@@ -27,7 +29,8 @@ public class Product {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "PRODUCT_ID", unique = true)
+
     private Long id;
 
     @Column(name = "NAME")
@@ -42,26 +45,15 @@ public class Product {
     @Column(name = "PRICE")
     private double price;
 
-    private Group group;
-
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    public Group getGroup() {
-        return group;
-    }
+    private Group group;
 
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
+    @ManyToMany
+    @JoinTable(
+            name = "ProductsInCart",
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CART_ID")
+    )
     private List<Cart> carts;
-
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
-    public List<Cart> getCarts() {
-        return carts;
-    }
-
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
-    }
 }
