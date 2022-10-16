@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "{productId}")
-    public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId) {
+    public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId) throws ProductNotFoundException {
         return ResponseEntity.ok(mapper.mapToProductDto(service.getProduct(productId)));
     }
 
@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "{productId}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) throws ProductNotFoundException {
         service.deleteProduct(service.getProduct(productId));
         return ResponseEntity.ok().build();
     }
