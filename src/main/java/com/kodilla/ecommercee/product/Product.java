@@ -14,6 +14,7 @@ import java.util.List;
 
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "PRODUCTS")
