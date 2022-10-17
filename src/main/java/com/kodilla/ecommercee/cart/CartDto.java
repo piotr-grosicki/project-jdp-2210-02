@@ -5,17 +5,11 @@ import lombok.Getter;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class CartDto {
     private Long cartId;
     private Long userId;
     private Long orderId;
     private List<Long> productsId;
-    
-    CartDto(Long cartId, Long userId, Long orderId) {
-    }
-    
-    CartDto() {
-    }
 }
