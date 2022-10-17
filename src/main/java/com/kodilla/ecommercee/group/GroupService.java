@@ -25,6 +25,16 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
+    public Group updateGroup(Group group) throws GroupNotFoundException {
+
+        Group groupToUpdate = groupRepository.findById(group.getId()).orElseThrow(GroupNotFoundException::new);
+        if (group.getName() != null) {
+            groupToUpdate.setName(group.getName());
+        }
+        saveGroup(groupToUpdate);
+        return groupToUpdate;
+    }
+
     public void deleteGroup(final Long groupId) {
         groupRepository.deleteById(groupId);
     }
