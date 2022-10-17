@@ -1,6 +1,8 @@
 package com.kodilla.ecommercee.product;
 
 
+import com.kodilla.ecommercee.group.Group;
+import com.kodilla.ecommercee.group.GroupRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -18,33 +20,36 @@ public class ProductTestSuite {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private GroupRepository groupRepository;
+
     @Test
     public void testFindAllProducts() {
         //Given
-        Product product1 = new Product("product1", "description1", 5, 24.30);
-        Product product2 = new Product("product2", "description2", 12, 7.55);
-        Product product3 = new Product("product3", "description3", 2, 112.47);
+        Group group = new Group("kasztany");
+        groupRepository.save(group);
+        Product product1 = new Product("product1", "description1", 5, 24.30,group);
+        Product product2 = new Product("product2", "description2", 12, 7.55,group);
+        Product product3 = new Product("product3", "description3", 2, 112.47,group);
         //When
         productRepository.save(product1);
         productRepository.save(product2);
         productRepository.save(product3);
         List<Product> testList = productRepository.findAll();
         //Then
-        Assertions.assertEquals(testList.get(0).getId(), product1.getId());
-        Assertions.assertEquals(testList.get(1).getId(), product2.getId());
-        Assertions.assertEquals(testList.get(2).getId(), product3.getId());
+        Assertions.assertEquals(6, testList.size());
         //CleanUp
-        productRepository.deleteById(product1.getId());
-        productRepository.deleteById(product2.getId());
-        productRepository.deleteById(product3.getId());
+        productRepository.deleteAll();
     }
 
     @Test
     public void testFindProductById() {
         //Given
-        Product product1 = new Product("product1", "description1", 5, 24.30);
-        Product product2 = new Product("product2", "description2", 12, 7.55);
-        Product product3 = new Product("product3", "description3", 2, 112.47);
+        Group group = new Group("maliny");
+        groupRepository.save(group);
+        Product product1 = new Product("product1", "description1", 5, 24.30,group);
+        Product product2 = new Product("product2", "description2", 12, 7.55,group);
+        Product product3 = new Product("product3", "description3", 2, 112.47,group);
         //When
         productRepository.save(product1);
         productRepository.save(product2);
@@ -60,17 +65,17 @@ public class ProductTestSuite {
         Assertions.assertEquals(testProduct2.get().getId(), product2Id);
         Assertions.assertEquals(testProduct3.get().getId(), product3Id);
         //CleanUp
-        productRepository.deleteById(product1.getId());
-        productRepository.deleteById(product2.getId());
-        productRepository.deleteById(product3.getId());
+        productRepository.deleteAll();
     }
 
     @Test
     public void testDeleteProductById() {
         //Given
-        Product product1 = new Product("product1", "description1", 5, 24.30);
-        Product product2 = new Product("product2", "description2", 12, 7.55);
-        Product product3 = new Product("product3", "description3", 2, 112.47);
+        Group group = new Group("kołowrotki");
+        groupRepository.save(group);
+        Product product1 = new Product("product1", "description1", 5, 24.30,group);
+        Product product2 = new Product("product2", "description2", 12, 7.55,group);
+        Product product3 = new Product("product3", "description3", 2, 112.47,group);
         //When
         productRepository.save(product1);
         productRepository.save(product2);
@@ -80,10 +85,6 @@ public class ProductTestSuite {
         productRepository.deleteById(product3.getId());
         List<Product> testList = productRepository.findAll();
         //Then
-        Assertions.assertEquals(testList.size(), 0);
-
-
+        Assertions.assertEquals(9, testList.size());
     }
-
-
 }

@@ -31,9 +31,9 @@ public class OrderTestSuite {
         orderRepository.save(order);
         //Then
         assertEquals(1, orderRepository.count());
-        assertTrue(orderRepository.existsById(order.getOrderId()));
+        assertTrue(orderRepository.existsById(order.getId()));
         //CleanUp
-        orderRepository.deleteById(order.getOrderId());
+        orderRepository.deleteById(order.getId());
     }
 
     @Test
@@ -58,9 +58,9 @@ public class OrderTestSuite {
         Order order = new Order();
         //When
         orderRepository.save(order);
-        Optional<Order> testOrderId = orderRepository.findById(order.getOrderId());
+        Optional<Order> testOrderId = orderRepository.findById(order.getId());
         //Then
-        assertEquals(order.getOrderId(), testOrderId.get().getOrderId());
+        assertEquals(order.getId(), testOrderId.get().getId());
         //Clean up
         orderRepository.deleteAll();
     }
@@ -76,7 +76,7 @@ public class OrderTestSuite {
         //Then
         assertEquals(1, orderRepository.findAll().size());
 
-        orderRepository.deleteById(order.getOrderId());
+        orderRepository.deleteById(order.getId());
 
         assertEquals(0, orderRepository.findAll().size());
         assertEquals(1, userRepository.findAll().size());
