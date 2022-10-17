@@ -26,6 +26,15 @@ public class Product {
         this.group = group;
     }
 
+    public Product(Long id, String name, String description, int quantity, double price,Group group) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+        this.group = group;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -45,7 +54,7 @@ public class Product {
     @Column(name = "PRICE")
     private double price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_ID")
     private Group group;
 
