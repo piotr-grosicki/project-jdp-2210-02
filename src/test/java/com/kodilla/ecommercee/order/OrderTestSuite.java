@@ -1,5 +1,7 @@
 package com.kodilla.ecommercee.order;
 
+import com.kodilla.ecommercee.order.Order;
+import com.kodilla.ecommercee.order.OrderRepository;
 import com.kodilla.ecommercee.user.User;
 import com.kodilla.ecommercee.user.UserRepository;
 import org.junit.Test;
