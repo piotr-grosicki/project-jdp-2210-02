@@ -34,11 +34,9 @@ public class GroupController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<GroupDto> updateGroup(@RequestBody GroupDto groupDto) {
-        Group group = groupMapper.mapToGroup(groupDto);
-        Group savedGroup = groupService.saveGroup(group);
-        return ResponseEntity.ok(groupMapper.mapToGroupDto(savedGroup));
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GroupDto> updateGroup(@RequestBody GroupDto groupDto) throws GroupNotFoundException {
+        return ResponseEntity.ok(groupMapper.mapToGroupDto(groupService.updateGroup(groupMapper.mapToUpdatedGroup(groupDto))));
     }
 
     @DeleteMapping(value = "{groupId}")

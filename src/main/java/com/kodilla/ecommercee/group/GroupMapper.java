@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class GroupMapper {
 
     public Group mapToGroup(final GroupDto groupDto) {
+
         return new Group(groupDto.getName());
     }
 
@@ -16,6 +17,13 @@ public class GroupMapper {
         return new GroupDto(
                 group.getId(),
                 group.getName()
+        );
+    }
+
+    public Group mapToUpdatedGroup(final GroupDto groupDto) {
+        return new Group(
+                groupDto.getId(),
+                groupDto.getName()
         );
     }
 
