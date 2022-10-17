@@ -1,5 +1,7 @@
 package com.kodilla.ecommercee.cart;
 
+import com.kodilla.ecommercee.group.Group;
+import com.kodilla.ecommercee.group.GroupRepository;
 import com.kodilla.ecommercee.product.Product;
 import com.kodilla.ecommercee.product.ProductRepository;
 import org.junit.Test;
@@ -21,6 +23,9 @@ public class CartTestSuite {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private GroupRepository groupRepository;
 
     @Test
     public void testAddNewCart() {
@@ -56,9 +61,11 @@ public class CartTestSuite {
     @Test
     public void testAddProductToCart() {
         //Given
-        Product product = new Product("product", "description", 2, 2.5);
+        Group group = new Group("kołowrotki");
+        Product product = new Product("product", "description", 2, 2.5, group);
         Cart cart = new Cart();
 
+        groupRepository.save(group);
         cartRepository.save(cart);
         productRepository.save(product);
 
@@ -69,6 +76,7 @@ public class CartTestSuite {
         assertEquals(1, cart.getProducts().size());
 
         //Clean up
+        groupRepository.deleteAll();
         cartRepository.deleteAll();
         productRepository.deleteAll();
     }
@@ -76,10 +84,13 @@ public class CartTestSuite {
     @Test
     public void testDeleteProductFromCart() {
         //Given
-        Product product1 = new Product("product", "description", 2, 2.5);
-        Product product2 = new Product("product2", "description2", 4, 2.8);
+        Group group = new Group("kołowrotki");
+        Product product1 = new Product("product", "description", 2, 2.5, group);
+        Product product2 = new Product("product2", "description2", 4, 2.8, group);
         Cart cart = new Cart();
 
+
+        groupRepository.save(group);
         cartRepository.save(cart);
         productRepository.save(product1);
         productRepository.save(product2);
@@ -90,6 +101,7 @@ public class CartTestSuite {
         assertEquals(1, cartRepository.findAll().size());
 
         //Clean up
+        groupRepository.deleteAll();
         cartRepository.deleteAll();
         productRepository.deleteAll();
     }
