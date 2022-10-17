@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalTime;
 
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "USERS")
 public class User {
@@ -38,11 +39,16 @@ public class User {
     @Column(name = "IS_BLOCK")
     private boolean blockStatus;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(name = "TOKEN_ACTIVE_FOR")
+    private LocalTime time = LocalTime.of(0,0,0);
+    @Column(name = "HAVE_TOKEN")
+    private boolean token;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "CART_ID")
     private Cart cart;
 
@@ -56,5 +62,6 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.blockStatus = false;
+        this.token = false;
     }
 }

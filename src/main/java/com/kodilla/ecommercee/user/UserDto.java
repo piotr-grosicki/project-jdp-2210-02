@@ -1,8 +1,9 @@
 package com.kodilla.ecommercee.user;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class UserDto {
     private Long id;
     private String login;
@@ -14,16 +15,4 @@ public class UserDto {
     private String phoneNumber;
     private String email;
     private boolean blockStatus;
-
-    UserDto(final String login, final String password, final String name, final String surname, final String address, final String city, final String phoneNumber, final String email) {
-        this.login = login;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
-        this.city = city;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.blockStatus = false;
-    }
 }
