@@ -7,7 +7,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,15 +23,15 @@ public class Cart {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "ProductsInCart",
-            joinColumns = @JoinColumn(name = "PRODUCTS_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CARTS_ID")
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            joinColumns = @JoinColumn(name = "CART_ID")
     )
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
 }
