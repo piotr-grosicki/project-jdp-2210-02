@@ -10,13 +10,13 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "\"GROUPS\"")
 public class Group {
 
-    public Group(String name, List<Product> products) {
+    public Group(String name) {
         this.name = name;
-        this.products = products;
     }
 
     @Id
