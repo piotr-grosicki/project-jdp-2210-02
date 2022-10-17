@@ -37,7 +37,7 @@ public class ProductTestSuite {
         productRepository.save(product3);
         List<Product> testList = productRepository.findAll();
         //Then
-        Assertions.assertEquals(6, testList.size());
+        Assertions.assertEquals(3, testList.size());
         //CleanUp
         productRepository.deleteAll();
     }
@@ -85,6 +85,6 @@ public class ProductTestSuite {
         productRepository.deleteById(product3.getId());
         List<Product> testList = productRepository.findAll();
         //Then
-        Assertions.assertEquals(9, testList.size());
+        Assertions.assertEquals(0, testList.size());
     }
 }

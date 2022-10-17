@@ -54,7 +54,7 @@ public class Product {
     @Column(name = "PRICE")
     private double price;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "GROUP_ID")
     private Group group;
 
