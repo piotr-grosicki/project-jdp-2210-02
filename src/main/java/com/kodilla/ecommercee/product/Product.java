@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @NoArgsConstructor
-@Data
+@Getter
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
