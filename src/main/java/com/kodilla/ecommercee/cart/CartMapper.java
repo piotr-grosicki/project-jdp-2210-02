@@ -14,7 +14,7 @@ public class CartMapper {
         return new CartDto(
                 cart.getId(),
                 cart.getUser().getId(),
-                cart.getOrder().getOrderId(),
+                cart.getOrder().getId(),
                 cart.getProducts().stream().map(Product::getId).collect(Collectors.toList())
         );
     }

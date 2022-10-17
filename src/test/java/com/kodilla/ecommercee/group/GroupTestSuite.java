@@ -22,9 +22,10 @@ public class GroupTestSuite {
     @Test
     public void testFindAllGroups() {
         //Given
-        Product product1 = new Product("product1", "description1", 5, 24.30);
-        Product product2 = new Product("product2", "description2", 12, 7.55);
-        Product product3 = new Product("product3", "description3", 2, 112.47);
+        Group group = new Group("kasztany");
+        Product product1 = new Product("product1", "description1", 5, 24.30,group);
+        Product product2 = new Product("product2", "description2", 12, 7.55,group);
+        Product product3 = new Product("product3", "description3", 2, 112.47,group);
         List<Product> products1 = new ArrayList<>();
         List<Product> products2 = new ArrayList<>();
         List<Product> products3 = new ArrayList<>();
@@ -50,9 +51,10 @@ public class GroupTestSuite {
     @Test
     public void testFingGroupById() throws GroupNotFoundException {
         //Given
-        Product product1 = new Product("product1", "description1", 5, 24.30);
-        Product product2 = new Product("product2", "description2", 12, 7.55);
-        Product product3 = new Product("product3", "description3", 2, 112.47);
+        Group group = new Group("maliny");
+        Product product1 = new Product("product1", "description1", 5, 24.30,group);
+        Product product2 = new Product("product2", "description2", 12, 7.55,group);
+        Product product3 = new Product("product3", "description3", 2, 112.47,group);
         List<Product> products1 = new ArrayList<>();
         List<Product> products2 = new ArrayList<>();
         List<Product> products3 = new ArrayList<>();
@@ -82,9 +84,10 @@ public class GroupTestSuite {
     @Test
     public void testDeleteGroupById() {
         //Given
-        Product product1 = new Product("product1", "description1", 5, 24.30);
-        Product product2 = new Product("product2", "description2", 12, 7.55);
-        Product product3 = new Product("product3", "description3", 2, 112.47);
+        Group group = new Group("kołowrotki");
+        Product product1 = new Product("product1", "description1", 5, 24.30,group);
+        Product product2 = new Product("product2", "description2", 12, 7.55,group);
+        Product product3 = new Product("product3", "description3", 2, 112.47,group);
         List<Product> products1 = new ArrayList<>();
         List<Product> products2 = new ArrayList<>();
         List<Product> products3 = new ArrayList<>();
