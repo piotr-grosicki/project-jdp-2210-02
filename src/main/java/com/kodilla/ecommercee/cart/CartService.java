@@ -1,7 +1,9 @@
 package com.kodilla.ecommercee.cart;
 
 import com.kodilla.ecommercee.product.Product;
+import com.kodilla.ecommercee.product.ProductNotFoundException;
 import com.kodilla.ecommercee.product.ProductRepository;
+import com.kodilla.ecommercee.user.NoFoundUserException;
 import com.kodilla.ecommercee.user.User;
 import com.kodilla.ecommercee.user.UserRepository;
 import org.springframework.stereotype.Service;
@@ -32,13 +34,9 @@ public class CartService {
         return cartRepository.findById(cartId).orElseThrow(NoFoundCartException::new);
     }
 
-    /**
-     * EXCEPTION CHANGE TO USERNOTFOUND
-     */
-
-    boolean createEmptyCart(Long userId){
+    boolean createEmptyCart(Long userId) throws NoFoundUserException {
         if (userRepository.existsById(userId)){
-            User user = userRepository.findById(userId).orElseThrow(IllegalArgumentException::new);
+            User user = userRepository.findById(userId).orElseThrow(NoFoundUserException::new);
             Cart cart = new Cart(
                     user,
                     null,
@@ -51,37 +49,25 @@ public class CartService {
         return false;
     }
 
-    /**
-     * EXCEPTION CHANGE TO PRODUCTNOTFOUND
-     */
-
-    boolean addProductToCart(Long cartId, Long productId) throws NoFoundCartException{
+    boolean addProductToCart(Long cartId, Long productId) throws NoFoundCartException, ProductNotFoundException {
         if (cartRepository.existsById(cartId) && productRepository.existsById(productId)){
             Cart cart = cartRepository.findById(cartId).orElseThrow(NoFoundCartException::new);
-            cart.getProducts().add(productRepository.findById(productId).orElseThrow(IllegalArgumentException::new));
+            cart.getProducts().add(productRepository.findById(productId).orElseThrow(ProductNotFoundException::new));
             cartRepository.save(cart);
             return true;
         }
         return false;
     }
 
-    /**
-     * EXCEPTION CHANGE TO PRODUCTNOTFOUND
-     */
-
     @Transactional
-    boolean deleteProductFromCartById(Long cartId, Long productId) throws NoFoundCartException{
+    boolean deleteProductFromCartById(Long cartId, Long productId) throws NoFoundCartException, ProductNotFoundException {
+        if (!cartRepository.existsById(cartId) && productRepository.existsById(productId))
+            throw new IllegalArgumentException("Cart or Product doesn't exist");
         Cart cart = cartRepository.findById(cartId).orElseThrow(NoFoundCartException::new);
-        Product productToDelete = productRepository.findById(productId).orElseThrow(IllegalArgumentException::new);
-        List<Product> products = cart.getProducts();
-
-        for (Product p: products){
-            if (p == productToDelete) {
-                cart.getProducts().remove(productToDelete);
-                cartRepository.save(cart);
-                return true;
-            }
-        }
-        throw new IllegalArgumentException();
+        Product productToDelete = cart.getProducts().stream()
+                .filter(product1 -> product1.getId().equals(productId))
+                .findFirst().orElseThrow(ProductNotFoundException::new);
+        cart.getProducts().remove(productToDelete);
+        return true;
     }
 }
