@@ -26,7 +26,7 @@ public class Cart {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 

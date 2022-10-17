@@ -1,6 +1,8 @@
 package com.kodilla.ecommercee.cart;
 
 import com.kodilla.ecommercee.order.OrderDto;
+import com.kodilla.ecommercee.order.OrderService;
+import com.kodilla.ecommercee.user.NoFoundUserException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,20 +13,20 @@ import java.util.List;
 public class CartController {
 
     private final CartService cartService;
-    //private final OrderService orderService;
+    private final OrderService orderService;
 
-    CartController(final CartService cartService/*, final OrderService orderService*/) {
+    CartController(final CartService cartService, final OrderService orderService) {
         this.cartService = cartService;
-        /*this.orderService = orderService;*/
+        this.orderService = orderService;
     }
 
-    @GetMapping()
+    @GetMapping
     ResponseEntity<List<CartDto>> getAllCarts(){
         return ResponseEntity.ok(cartService.getAllCarts());
     }
-    @PostMapping()
-    ResponseEntity<Void> createOrderFromCart(@RequestBody OrderDto orderDto) throws NoFoundCartException{
-        //orderService.createOrder(orderDto);
+    @PostMapping
+    ResponseEntity<Void> createOrderFromCart(@RequestBody OrderDto orderDto) throws NoFoundCartException, NoFoundUserException {
+        orderService.createOrder(orderDto);
         return ResponseEntity.ok().build();
     }
     @PostMapping("/empty/{userId}")

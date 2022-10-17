@@ -2,9 +2,7 @@ package com.kodilla.ecommercee.product;
 
 import com.kodilla.ecommercee.cart.Cart;
 import com.kodilla.ecommercee.group.Group;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,14 +14,16 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
+@Data
 @Table(name = "PRODUCTS")
 public class Product {
 
-    public Product(String name, String description, int quantity, double price) {
+    public Product(String name, String description, int quantity, double price, final Group group) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
+        this.group = group;
     }
 
     @Id

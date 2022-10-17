@@ -44,7 +44,7 @@ public class User {
     @Column(name = "HAVE_TOKEN")
     private boolean token;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 

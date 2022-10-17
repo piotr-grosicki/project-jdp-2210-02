@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +26,7 @@ public class OrderTestSuite {
     @Test
     public void createOrder() {
         //Given
-        Order order = new Order(LocalDateTime.now(), LocalDateTime.now(), "dfdfg", "sdsdsds");
+        Order order = new Order("dfdfg", "sdsdsds");
         //When
         orderRepository.save(order);
         //Then
@@ -70,7 +69,7 @@ public class OrderTestSuite {
     public void deleteOrderById() {
         //Given
         User user = new User("login", "password", "name", "surname", "address", "city", "666 666 666", "email@email.com");
-        Order order = new Order(LocalDateTime.now(), LocalDateTime.now(), "dfdfg", "sdsdsds");
+        Order order = new Order("dfdfg", "sdsdsds");
         //When
         userRepository.save(user);
         orderRepository.save(order);
