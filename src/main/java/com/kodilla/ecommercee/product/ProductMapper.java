@@ -41,4 +41,13 @@ public class ProductMapper {
                 .map(this::mapToProductDto)
                 .collect(Collectors.toList());
     }
+
+    public Product mapToUpdatedProduct(ProductDto productDto) throws GroupNotFoundException {
+        return new Product(productDto.getId(),
+                productDto.getName(),
+                productDto.getDescription(),
+                productDto.getQuantity(),
+                productDto.getPrice(),
+                groupService.getGroup(productDto.getGroupId()));
+    }
 }

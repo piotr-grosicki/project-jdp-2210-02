@@ -16,6 +16,8 @@ public class ProductController {
     private final ProductService service;
     private final ProductMapper mapper;
 
+    private final ProductRepository repository;
+
     @GetMapping("/getall")
     public ResponseEntity<List<ProductDto>> getProducts() {
         List<Product> products = service.getAllProducts();
@@ -29,21 +31,23 @@ public class ProductController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto) throws GroupNotFoundException {
+
         Product product = mapper.mapToProduct(productDto);
         service.saveProduct(product);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) throws GroupNotFoundException {
-        Product product = mapper.mapToProduct(productDto);
-        Product savedProduct = service.saveProduct(product);
-        return ResponseEntity.ok(mapper.mapToProductDto(savedProduct));
+    @PutMapping(value = "{productId}")
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto, @PathVariable Long productId) throws GroupNotFoundException {
+        Product productToUpdate = mapper.mapToUpdatedProduct(productDto);
+        Long id = repository.findById(productId).get().getId();
+        productToUpdate.setId(id);
+        return ResponseEntity.ok(mapper.mapToProductDto(repository.save(productToUpdate)));
     }
 
     @DeleteMapping(value = "{productId}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) throws ProductNotFoundException {
-        service.deleteProduct(service.getProduct(productId));
+    public ResponseEntity<Void> deletebyId(@PathVariable Long productId) throws ProductNotFoundException {
+        repository.deleteById(productId);
         return ResponseEntity.ok().build();
     }
 
