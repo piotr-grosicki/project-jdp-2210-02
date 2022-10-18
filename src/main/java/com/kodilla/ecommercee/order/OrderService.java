@@ -32,7 +32,13 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public void deleteOrderById(Long orderId) {
+    public void deleteOrderById(Long orderId) throws NoFoundUserException, NoFoundCartException {
+        User user = userRepository.findById(orderRepository.findById(orderId).get().getUser().getId()).orElseThrow(NoFoundUserException::new);
+        user.setOrder(null);
+        Cart cart = cartRepository.findById(user.getCart().getId()).orElseThrow(NoFoundCartException::new);
+        cart.setOrder(null);
+        userRepository.save(user);
+        cartRepository.save(cart);
         orderRepository.deleteById(orderId);
     }
 

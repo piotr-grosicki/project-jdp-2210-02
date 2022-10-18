@@ -41,8 +41,8 @@ public class OrderController {
         return orderMapper.mapToOrderDto(savedOrder);
     }
 
-    @DeleteMapping(value = "/deleteOrder")
-    public void deleteOrder(@RequestParam("orderId") Long orderId) {
+    @DeleteMapping(value = "/deleteOrder/{orderId}")
+    public void deleteOrder(@PathVariable Long orderId) throws NoFoundUserException, NoFoundCartException {
         orderService.deleteOrderById(orderId);
     }
 }
