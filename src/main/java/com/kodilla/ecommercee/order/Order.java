@@ -41,14 +41,23 @@ public class Order {
     @JoinColumn(name = "CART_ID")
     private Cart cart;
 
-    public Order(final String shippingAddress, final String shippingStatus) {
+    /*public Order(final String shippingAddress, final String shippingStatus) {
         this.dateOfOrder = LocalDateTime.now();
         this.shippingDate = LocalDateTime.now();
         this.shippingAddress = shippingAddress;
         this.shippingStatus = shippingStatus;
     }
 
-    Order(final String shippingAddress, final String shippingStatus, final User user, final Cart cart) {
+     */
+
+    public Order(String shippingAddress, String shippingStatus, User user, Cart cart) {
+        this.shippingAddress = shippingAddress;
+        this.shippingStatus = shippingStatus;
+        this.user = user;
+        this.cart = cart;
+    }
+
+    Order(Long id, final String shippingAddress, final String shippingStatus, final User user, final Cart cart) {
         this.dateOfOrder = LocalDateTime.now();
         this.shippingDate = LocalDateTime.now().plusDays(5);
         this.shippingAddress = shippingAddress;

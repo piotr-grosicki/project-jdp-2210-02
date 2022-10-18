@@ -21,7 +21,7 @@ public class OrderMapper {
     }
 
     public Order mapToOrder(OrderDto orderDto) throws NoFoundUserException, NoFoundCartException {
-        return new Order(
+        return new Order(orderDto.getOrderId(),
                 orderDto.getShippingAddress(),
                 orderDto.getShippingStatus(),
                 userService.getUser(orderDto.getUserId()),
@@ -46,4 +46,16 @@ public class OrderMapper {
                 .map(this::mapToOrderDto)
                 .collect(Collectors.toList());
     }
+
+    /*public Order maToUpdatedProduct(OrderDto orderDto) {
+        return new Order(orderDto.getOrderId(),
+                orderDto.getShippingAddress(),
+                orderDto.getShippingStatus(),
+                userService.getUser(orderDto.getUserId()),
+                cartService.getCart(orderDto.getCartId()));
+
+
+    }
+
+     */
 }

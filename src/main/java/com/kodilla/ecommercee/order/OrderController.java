@@ -5,6 +5,7 @@ import com.kodilla.ecommercee.user.NoFoundUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,11 +35,12 @@ public class OrderController {
         orderService.saveOrder(order);
     }
 
-    @PutMapping(value = "/updateOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public OrderDto updateOrder(@RequestBody OrderDto orderDto) throws NoFoundCartException, NoFoundUserException {
-        Order order = orderMapper.mapToOrder(orderDto);
-        Order savedOrder = orderService.saveOrder(order);
-        return orderMapper.mapToOrderDto(savedOrder);
+    @PutMapping(value = "/updateOrder/{orderId}")
+    public ResponseEntity<OrderDto> updateOrder(@RequestBody OrderDto orderDto, @PathVariable Long orderId) throws NoFoundCartException, NoFoundUserException {
+        Order ordertoUpdate = orderMapper.mapToOrder(orderDto);
+        Long id = orderService.getOrder(orderId).getId();
+        ordertoUpdate.setId(id);
+        return ResponseEntity.ok(orderMapper.mapToOrderDto(orderService.saveOrder(ordertoUpdate)));
     }
 
     @DeleteMapping(value = "/deleteOrder/{orderId}")
