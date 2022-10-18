@@ -1,5 +1,7 @@
 package com.kodilla.ecommercee.order;
 
+import com.kodilla.ecommercee.cart.Cart;
+import com.kodilla.ecommercee.cart.CartRepository;
 import com.kodilla.ecommercee.order.Order;
 import com.kodilla.ecommercee.order.OrderRepository;
 import com.kodilla.ecommercee.user.User;
@@ -25,17 +27,25 @@ public class OrderTestSuite {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CartRepository cartRepository;
+
     @Test
     public void createOrder() {
         //Given
-        Order order = new Order("dfdfg", "sdsdsds");
+        User user = new User();
+        Cart cart = new Cart();
+        Order order = new Order("dfdfg", "sdsdsds", user, cart);
         //When
+        cartRepository.save(cart);
+        userRepository.save(user);
         orderRepository.save(order);
         //Then
         assertEquals(1, orderRepository.count());
         assertTrue(orderRepository.existsById(order.getId()));
         //CleanUp
         orderRepository.deleteById(order.getId());
+        userRepository.deleteAll();
     }
 
     @Test
@@ -70,9 +80,11 @@ public class OrderTestSuite {
     @Test
     public void deleteOrderById() {
         //Given
+        Cart cart = new Cart();
         User user = new User("login", "password", "name", "surname", "address", "city", "666 666 666", "email@email.com");
-        Order order = new Order("dfdfg", "sdsdsds");
+        Order order = new Order("dfdfg", "sdsdsds", user, cart);
         //When
+        cartRepository.save(cart);
         userRepository.save(user);
         orderRepository.save(order);
         //Then
